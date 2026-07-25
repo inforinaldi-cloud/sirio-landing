@@ -64,6 +64,9 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data),
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
+    const result = await res.json();
+    if (String(result.success) !== 'true') throw new Error(result.message || 'Invio non riuscito');
+    form.reset();
     success.hidden = false;
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch (err) {
