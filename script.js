@@ -41,15 +41,36 @@ faqItems.forEach((d) =>
   })
 );
 
-// Form (front-end only; backend wiring da configurare in produzione)
+// Form: invio lead via Formsubmit (email di notifica), niente backend
 const form = document.getElementById('leadForm');
 const success = document.getElementById('formSuccess');
-form.addEventListener('submit', (e) => {
+const errorMsg = document.getElementById('formError');
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@sergiorinaldiconsulting.com';
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!form.checkValidity()) { form.reportValidity(); return; }
-  success.hidden = false;
-  form.querySelector('button[type="submit"]').disabled = true;
-  success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  errorMsg.hidden = true;
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.privacy = form.privacy.checked ? 'Sì' : 'No';
+  data.source = 'Landing Sirio Agency';
+  data._subject = 'Nuovo lead dal sito Sirio Agency';
+  data._template = 'table';
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    success.hidden = false;
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) {
+    btn.disabled = false;
+    errorMsg.hidden = false;
+    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 });
 
 // Case-study video gallery: click to play, pause others

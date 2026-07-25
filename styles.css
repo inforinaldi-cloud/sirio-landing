@@ -533,6 +533,8 @@ h3 { font-size: clamp(1.2rem, 1.9vw, 1.45rem); }
 .consent a { color: var(--gold-deep); text-decoration: underline; }
 .form-success { background: rgba(200,162,74,0.12); border: 1px solid var(--gold); border-radius: var(--radius-sm); padding: 0.9rem 1rem; font-size: 0.9rem; color: var(--ink); }
 .form-success em { color: var(--muted); font-style: italic; }
+.form-error { background: rgba(200,74,74,0.12); border: 1px solid #c84a4a; border-radius: var(--radius-sm); padding: 0.9rem 1rem; font-size: 0.9rem; color: var(--ink); margin-top: 0.6rem; }
+.form-error a { color: var(--gold-deep); text-decoration: underline; }
 
 /* ---------- FAQ ---------- */
 .faq { display: flex; flex-direction: column; gap: 0.7rem; }
