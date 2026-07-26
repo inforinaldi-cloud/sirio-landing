@@ -167,6 +167,13 @@ h3 { font-size: clamp(1.2rem, 1.9vw, 1.45rem); }
 
 .header-cta { flex-shrink: 0; }
 
+/* Language switcher */
+.lang-switch { display: inline-flex; align-items: center; gap: 0.15rem; flex-shrink: 0; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; }
+.lang-switch a { color: var(--on-dark-soft); padding: 0.2rem 0.4rem; border-radius: 6px; transition: color 0.2s var(--ease), background 0.2s var(--ease); }
+.lang-switch a:hover { color: #fff; }
+.lang-switch a.active { color: #0A101E; background: var(--gold); }
+.lang-switch .lang-sep { color: var(--on-dark-soft); opacity: 0.5; }
+
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 6px; }
 .hamburger span { width: 24px; height: 2px; background: var(--on-dark); border-radius: 2px; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }

@@ -23,20 +23,45 @@
     if (b) b.remove();
   }
 
+  function getLang() {
+    var l = (document.documentElement.getAttribute('lang') || 'it').toLowerCase();
+    return l.indexOf('en') === 0 ? 'en' : 'it';
+  }
+
+  // La pagina cookie sta sempre nella stessa cartella della pagina corrente
+  // (cookie.html in root per le pagine IT, en/cookie.html per le pagine EN),
+  // quindi il link relativo "cookie.html" è corretto in entrambi i casi.
+  var TXT = {
+    it: {
+      label: 'Informativa cookie',
+      text: 'Usiamo cookie e tecnologie di tracciamento a fini di analisi e marketing per capire da quale canale arrivi. ' +
+        'Puoi accettarli o rifiutarli. Dettagli nella <a href="cookie.html">Cookie Policy</a>.',
+      reject: 'Rifiuta',
+      accept: 'Accetta'
+    },
+    en: {
+      label: 'Cookie notice',
+      text: 'We use cookies and tracking technologies for analytics and marketing to understand which channel you came from. ' +
+        'You can accept or reject them. Details in the <a href="cookie.html">Cookie Policy</a>.',
+      reject: 'Reject',
+      accept: 'Accept'
+    }
+  };
+
   function showBanner() {
+    var t = TXT[getLang()];
     var banner = document.createElement('div');
     banner.id = 'cookieBanner';
     banner.className = 'cookie-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-live', 'polite');
-    banner.setAttribute('aria-label', 'Informativa cookie');
+    banner.setAttribute('aria-label', t.label);
     banner.innerHTML =
       '<div class="cookie-banner-inner">' +
-        '<p class="cookie-banner-text">Usiamo cookie e tecnologie di tracciamento a fini di analisi e marketing per capire da quale canale arrivi. ' +
-        'Puoi accettarli o rifiutarli. Dettagli nella <a href="cookie.html">Cookie Policy</a>.</p>' +
+        '<p class="cookie-banner-text">' + t.text + '</p>' +
         '<div class="cookie-banner-actions">' +
-          '<button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject">Rifiuta</button>' +
-          '<button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept">Accetta</button>' +
+          '<button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject">' + t.reject + '</button>' +
+          '<button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept">' + t.accept + '</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(banner);

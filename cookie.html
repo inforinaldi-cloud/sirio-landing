@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+<link rel="alternate" hreflang="it" href="https://siriomarketing.com/cookie.html" />
+<link rel="alternate" hreflang="en" href="https://siriomarketing.com/en/cookie.html" />
+<link rel="alternate" hreflang="x-default" href="https://siriomarketing.com/cookie.html" />
 <style>
   body { background: #F6F2E9; }
   .legal-bar { background: #0A101E; }
@@ -32,7 +35,14 @@
 <div class="legal-bar">
   <div class="container">
     <a href="index.html" class="brand">SIRIO<span class="brand-thin">AGENCY</span></a>
-    <a href="index.html" class="back">&larr; Torna al sito</a>
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <div class="lang-switch" aria-label="Lingua / Language">
+        <a href="cookie.html" class="active" aria-current="true">IT</a>
+        <span class="lang-sep" aria-hidden="true">/</span>
+        <a href="en/cookie.html">EN</a>
+      </div>
+      <a href="index.html" class="back">&larr; Torna al sito</a>
+    </div>
   </div>
 </div>
 
